@@ -1,3 +1,4 @@
+//DUMMY PRICE DATA
 var data = {
   'a5Postcard': {
     'a5BasePrice': 40,
@@ -33,7 +34,8 @@ var letterOrder = {
   'duplexExtraColour': 6,
   'windowedEnvelopeExtra': 15
 };
-  
+
+//CALCULATOR
 const letterPrices = Object.values(data['letter']); 
 const letterOrderCosts = Object.values(letterOrder);
 const lettersTotalPrice = () =>{
