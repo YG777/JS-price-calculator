@@ -1,0 +1,25 @@
+{
+  "name": "js-price-calculator",
+  "version": "1.0.0",
+  "description": "calculator",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YG777/JS-price-calculator.git"
+  },
+  "author": "Yekaterina Biryukova",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/YG777/JS-price-calculator/issues"
+  },
+  "homepage": "https://github.com/YG777/JS-price-calculator#readme",
+  "devDependencies": {
+    "jasmine": "^3.1.0"
+  }
+}
