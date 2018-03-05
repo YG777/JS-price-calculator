@@ -12,11 +12,8 @@ var data = {
     basePrice: 100
   },
   letter: {
-    // basePrice: 44,
     basePriceColour: 49,
-    // extraSheet: 4,
     extraSheetColour: 6,
-    // duplexExtra: 2,
     duplexExtraColour: 3,
     windowedEnvelopeExtra: 1
   }
@@ -27,7 +24,7 @@ const order = {
   quantity: 25,
   options: {
     colour: true,
-    duplexColour: false,
+    duplexColour: true,
     extraSheetColour: 2,
     windowed: true
   }
