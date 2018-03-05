@@ -12,11 +12,11 @@ var data = {
     basePrice: 100
   },
   letter: {
-    basePrice: 44,
+    // basePrice: 44,
     basePriceColour: 49,
-    extraSheet: 4,
+    // extraSheet: 4,
     extraSheetColour: 6,
-    duplexExtra: 2,
+    // duplexExtra: 2,
     duplexExtraColour: 3,
     windowedEnvelopeExtra: 1
   }
@@ -27,7 +27,7 @@ const order = {
   quantity: 25,
   options: {
     colour: true,
-    duplexColour: true,
+    duplexColour: false,
     extraSheetColour: 2,
     windowed: true
   }
@@ -37,7 +37,7 @@ const type                        = order.type;
 const quantity                    = order.quantity;
 const options                     = order.options; 
 //ORDER OBJ OPTIONS VARS
-const orderNumLetterXsheetColor  = order.options.extraSheetColour;
+const orderNumLetterXsheetcolour  = order.options.extraSheetColour;
 const orderLetterDuplexColour     = order.options.duplexColour;
 const orderLetterWindowed         = order.options.windowed;
 const orderNumLetterXsheet        = order.options.extraSheet;
@@ -62,24 +62,29 @@ const getType = (type) => {
 
 const letterOptions = (options) => {
   if (options.colour) {
-    letterColorPrices(options);
+    console.log('-option colour, calling lettercolourPrices');
+    letterColourPrices(options);
   }else {
     letterBasePrices(options);
   }
 };
 
-const letterColorPrices  = (options) => {
+const letterColourPrices  = (options) => {
   let retVal = 0;
   Object.keys(options).forEach(k => { 
-    if (k === 'colour') {
+    if (k === 'colour' && options[k]) {
       retVal = retVal + priceLetterColour;
-      console.log(retVal);
-    } else if (k === 'duplexColour') {
+      // console.log(retVal);
+    } else if (k === 'duplexColour' && options[k]) {
       retVal = retVal + priceLetterDuplexColour;
-      console.log(retVal);
-    } else if (k === 'extraSheetColour') {
-      retVal = retVal + (orderNumLetterXsheetColor*priceLetterXcolour);
-      console.log(retVal);
+      // console.log(retVal);
+    } else if (k === 'extraSheetColour' && options[k]) {
+      retVal = retVal + (orderNumLetterXsheetcolour*priceLetterXcolour);
+      // console.log(retVal);
+    }
+    else if (k === 'windowed' && options[k]) {
+      retVal = retVal + orderLetterWindowed;
+      // console.log(retVal);
     }
   });
   return retVal;
@@ -94,5 +99,5 @@ const letterColorPrices  = (options) => {
 module.exports = {
   getType,
   letterOptions,
-  letterColorPrices
+  letterColourPrices
 };

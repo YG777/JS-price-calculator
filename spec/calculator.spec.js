@@ -11,12 +11,11 @@ describe('Calculator', function() {
       windowed: true
     }
   };
-  const type  = order.type;
 
-  xit('calculate 1letter price ', function () {
+  it('calculate 1letter price ', function () {
 
     const options = order.options; 
-    expect(calculator.letterColorPrices(options)).toBe(64);  
+    expect(calculator.letterColourPrices(options)).toBe(65);  
   });
   
  
