@@ -11,6 +11,10 @@ function Calculator(prices) {
       price = this.prices.a5postcard.basePrice;
     } else if (options.type === 'a5postcard') {
       price = this.prices.a5postcard.colourPrice;
+    } else if (options.type === 'a6postcard' && !options.colour) {
+      price = this.prices.a6postcard.basePrice;
+    }else if (options.type === 'a6postcard') {
+      price = this.prices.a6postcard.colourPrice;
     }
     return price * options.quantity;
   };

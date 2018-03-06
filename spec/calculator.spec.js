@@ -10,6 +10,10 @@ describe('Calculator', function() {
     a5postcard: {
       basePrice: 30,
       colourPrice: 31
+    },
+    a6postcard: {
+      basePrice: 30,
+      colourPrice: 31
     }
   };
   var calculator = new Calculator(prices);
@@ -77,8 +81,36 @@ describe('Calculator', function() {
       options.quantity = 10;
       options.colour = true;
       expect(calculator.calculate(options)).toBe(
-        prices.a5postcard.colourPrice * options.quantity
+        prices.a5postcard.colourPrice * options.quantity);
+    });
+
+    it('calculate 1 A6 black postcard', function() {
+      options.quantity = 1;
+      options.colour = false;
+      expect(calculator.calculate(options)).toBe(prices.a6postcard.basePrice);
+    });
+
+    it('calculate 10 A6 black postcard', function() {
+      options.quantity = 10;
+      options.colour = false;
+      expect(calculator.calculate(options)).toBe(
+        prices.a6postcard.basePrice * options.quantity
       );
     });
+
+    it('calculate 1 A6 colour postcard', function() {
+      options.quantity = 1;
+      options.colour = true;
+      expect(calculator.calculate(options)).toBe(prices.a6postcard.colourPrice);
+
+    });
+
+    it('calculate 10 A6 colour postcard', function() {
+      options.quantity = 10;
+      options.colour = true;
+      expect(calculator.calculate(options)).toBe(
+        prices.a6postcard.colourPrice * options.quantity);
+    });
+
   });
 });
