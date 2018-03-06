@@ -1,18 +1,24 @@
-function calculate(options) {
-  //options = {quantity: 1, type: 'letter'}
-  var price = 0;
-  if (options.type === "letter" && !options.colour) {
-    price = 44;
-  } else if (options.type === "letter" && options.colour) {
-    price = 49;
-  } else if (options.type === "a5postcard" && !options.colour) {
-    price = 40;
-  } else if (options.type === "a5postcard" && options.colour) {
-    price = 50;
-  }
-  return price * options.quantity;
+function Calculator(prices) {
+  this.prices = prices;
+
+  this.calculate = function (options) {
+    let price = 0;
+    if (options.type === 'letter' && !options.colour) {
+      price = this.prices.letter.basePrice;
+    } else if (options.type === 'letter') {
+      price = this.prices.letter.colourPrice;
+    } else if (options.type === 'a5postcard' && !options.colour) {
+      price = this.prices.a5postcard.basePrice;
+    } else if (options.type === 'a5postcard') {
+      price = this.prices.a5postcard.colourPrice;
+    }
+    return price * options.quantity;
+  };
 }
 
-module.exports = {
-  calculate
-};
+
+module.exports = Calculator;
+
+
+
+
