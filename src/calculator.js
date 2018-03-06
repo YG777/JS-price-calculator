@@ -15,6 +15,8 @@ function Calculator(prices) {
       price = this.prices.a6postcard.basePrice;
     }else if (options.type === 'a6postcard') {
       price = this.prices.a6postcard.colourPrice;
+    }else if (options.type === 'greetingCard') {
+      price = this.prices.greetingCard.basePrice;
     }
     return price * options.quantity;
   };

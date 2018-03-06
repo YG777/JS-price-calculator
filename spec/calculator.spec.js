@@ -14,6 +14,9 @@ describe('Calculator', function() {
     a6postcard: {
       basePrice: 30,
       colourPrice: 31
+    },
+    greetingCard: {
+      basePrice: 30
     }
   };
   var calculator = new Calculator(prices);
@@ -111,6 +114,23 @@ describe('Calculator', function() {
       expect(calculator.calculate(options)).toBe(
         prices.a6postcard.colourPrice * options.quantity);
     });
-
   });
+
+  describe('greetingCard pricing', function() {
+    var options = {
+      type: 'greetingCard'
+    };
+
+    it('calculate 1 geeting card', function() {
+      options.quantity = 1;
+      expect(calculator.calculate(options)).toBe(prices.greetingCard.basePrice);
+    });
+
+    it('calculate 10 geeting cards', function() {
+      options.quantity = 10;
+      expect(calculator.calculate(options)).toBe(
+        prices.greetingCard.basePrice * options.quantity);
+    });
+  });
+
 });
