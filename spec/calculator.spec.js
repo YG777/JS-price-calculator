@@ -29,11 +29,14 @@ describe("Calculator", function() {
     var options = {
       type: "letter"
     };
-
+//BLACK LETTERS
     it("calculate 1 black letter", function() {
       options.quantity = 1;
       options.colour = false;
       options.duplexExtra = false;
+      options.extraSheet = false;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
       expect(calculator.calculate(options)).toBe(prices.letter.basePrice);
     });
 
@@ -41,6 +44,9 @@ describe("Calculator", function() {
       options.quantity = 10;
       options.colour = false;
       options.duplexExtra = false;
+      options.extraSheet = false;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
       expect(calculator.calculate(options)).toBe(
         prices.letter.basePrice * options.quantity
       );
@@ -49,6 +55,7 @@ describe("Calculator", function() {
       options.quantity = 1;
       options.colour = false;
       options.duplexExtra = true;
+      options.extraSheet = false;
       expect(calculator.calculate(options)).toBe(
         prices.letter.duplexExtra + prices.letter.basePrice
       );
@@ -57,6 +64,7 @@ describe("Calculator", function() {
       options.quantity = 1;
       options.colour = false;
       options.duplexExtra = true;
+      options.extraSheet = false;
       expect(calculator.calculate(options)).toBe(
         options.quantity * (prices.letter.duplexExtra + prices.letter.basePrice)
       );
@@ -65,25 +73,102 @@ describe("Calculator", function() {
     it("calculate 1 letter black with 1 extra sheets", function() {
       options.quantity = 1;
       options.colour = false;
+      options.duplexExtra = false;
       options.extraSheet = 1;
       expect(calculator.calculate(options)).toBe(
-        (prices.letter.extraSheet * options.extraSheet) + prices.letter.basePrice
+        ((prices.letter.extraSheet * options.extraSheet) + prices.letter.basePrice*options.quantity) 
       );
     });
+
+    it("calculate 10 letter black with 1 extra sheets", function() {
+      options.quantity = 10;
+      options.colour = false;
+      options.duplexExtra = false;
+      options.extraSheet = 1;
+      expect(calculator.calculate(options)).toBe(
+        ((prices.letter.extraSheet * options.extraSheet) + prices.letter.basePrice*options.quantity) 
+      );
+    });
+
+    it("calculate 1 letter black with 5 extra sheets", function() {
+      options.quantity = 1;
+      options.colour = false;
+      options.duplexExtra = false;
+      options.extraSheet = 5;
+      expect(calculator.calculate(options)).toBe(
+        ((prices.letter.extraSheet * options.extraSheet) + prices.letter.basePrice*options.quantity) 
+      );
+    });
+
+
+//COLOR LETTERS
 
     it("calculate 1 colour letter", function() {
       options.quantity = 1;
       options.colour = true;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
       expect(calculator.calculate(options)).toBe(prices.letter.colourPrice);
     });
 
     it("calculate 20,000 colour letters", function() {
       options.quantity = 20000;
       options.colour = true;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
       expect(calculator.calculate(options)).toBe(
         prices.letter.colourPrice * options.quantity
       );
     });
+    it("calculate 1 colour letter with duplex", function() {
+      options.quantity = 1;
+      options.colour = true;;
+      options.duplexExtraColour = true;
+      options.extraSheetColour = false;
+      expect(calculator.calculate(options)).toBe(
+        prices.letter.duplexExtraColour + prices.letter.colourPrice
+      );
+    });
+    it("calculate 10 colour letter with duplex", function() {
+      options.quantity = 1;
+      options.colour = true;
+      options.duplexExtraColour = true;
+      options.extraSheetColour = false;
+      expect(calculator.calculate(options)).toBe(
+        options.quantity * (prices.letter.duplexExtraColour + prices.letter.colourPrice)
+      );
+    });
+  
+    it("calculate 1 letter colour with 1 extra sheets", function() {
+      options.quantity = 1;
+      options.colour = true;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = 1;
+      expect(calculator.calculate(options)).toBe(
+        ((prices.letter.extraSheetColour * options.extraSheetColour) + prices.letter.colourPrice*options.quantity) 
+      );
+    });
+  
+    it("calculate 10 letter colour with 1 extra sheets", function() {
+      options.quantity = 10;
+      options.colour = true;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = 1;
+      expect(calculator.calculate(options)).toBe(
+        ((prices.letter.extraSheetColour * options.extraSheetColour) + prices.letter.colourPrice*options.quantity) 
+      );
+    });
+  
+    it("calculate 1 letter colour with 5 extra sheets", function() {
+      options.quantity = 1;
+      options.colour = true;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = 5;
+      expect(calculator.calculate(options)).toBe(
+        ((prices.letter.extraSheetColour * options.extraSheetColour) + prices.letter.colourPrice*options.quantity) 
+      );
+    });
+
   });
 
   describe(" A5 postcard pricing", function() {
