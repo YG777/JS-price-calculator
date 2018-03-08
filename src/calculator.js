@@ -5,6 +5,28 @@ function Calculator(prices) {
     const type = options.type;
     const prices = this.prices;
     const colour = options.colour;
+
+    const calculateTotal = (calculateBase, calculateLetterXtras) => {
+      let basePrice = calculateBase();
+      let xras = calculateLetterXtras();
+      if (xras) {
+        return basePrice + xras;
+      } else {
+        return basePrice;
+      }
+    };
+
+    const calculateLetterXtras = () => {
+      let price = 0;
+      if (type === 'letter' && !colour && options.duplexExtra) {
+        price =  prices.letter.duplexExtra;
+      } else if (type === 'letter' && !colour && options.extraSheet){
+        price = prices.letter.extraSheet*options.extraSheet;
+      }
+
+      return price;
+    };
+
     const calculateBase = () => {
       let price = 0;
       if (type === 'letter' && !colour) {
@@ -24,11 +46,8 @@ function Calculator(prices) {
       }
       return price * options.quantity;
     };
-    return calculateBase();
 
-  // const calculateLetterXras = () => {
-  //   if (type === 'letter' &&)
-  // }
+    return calculateTotal(calculateBase, calculateLetterXtras);
   };
 }
 
