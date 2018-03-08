@@ -22,6 +22,10 @@ function Calculator(prices) {
         price =  prices.letter.duplexExtra;
       } else if (type === 'letter' && !colour && options.extraSheet){
         price = prices.letter.extraSheet*options.extraSheet;
+      } else if (type === 'letter' && options.extraSheetColour){
+        price = prices.letter.extraSheetColour*options.extraSheetColour;
+      }else if (type === 'letter' && options.duplexExtraColour) {
+        price =  prices.letter.duplexExtraColour;
       }
 
       return price;
