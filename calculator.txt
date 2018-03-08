@@ -1,0 +1,30 @@
+a request will need to be made from a server to get the data
+each item has a base price (black and white) or a base colour price (colour)
+    greetings cards are the exception as they are only available in colour
+    
+extra prices can be added on to the base price depending on the options chosen (extra pages, duplex etc)
+we need to calculate how much it will cost to send x number of items, with the options chosen by the user
+it will only need to calculate one type (letter, greetingCard etc.) at a time
+    
+the data will look like this
+{
+    "a5Postcard": {
+        "a5BasePrice": 40,
+        "a5BasePriceColour": 50
+    },
+    "a6Postcard": {
+        "a6BasePrice": 39,
+        "a6BasePriceColour": 47
+    },
+    "greetingCard": {
+        "basePrice": 100
+    },
+    "letter": {
+        "basePrice": 44,
+        "basePriceColour": 49,
+        "extraSheet": 4,
+        "extraSheetColour": 6,
+        "duplexExtra": 2,
+        "duplexExtraColour": 3
+    }
+}
