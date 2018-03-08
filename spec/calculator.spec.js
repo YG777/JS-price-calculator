@@ -122,7 +122,7 @@ describe("Calculator", function() {
     });
     it("calculate 1 colour letter with duplex", function() {
       options.quantity = 1;
-      options.colour = true;;
+      options.colour = true;
       options.duplexExtraColour = true;
       options.extraSheetColour = false;
       expect(calculator.calculate(options)).toBe(
