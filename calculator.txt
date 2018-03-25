@@ -25,6 +25,7 @@ the data will look like this
         "extraSheet": 4,
         "extraSheetColour": 6,
         "duplexExtra": 2,
-        "duplexExtraColour": 3
+        "duplexExtraColour": 3,
+        "windowedEnvelopeExtra": 1
     }
 }

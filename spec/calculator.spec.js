@@ -29,7 +29,7 @@ describe("Calculator", function() {
     var options = {
       type: "letter"
     };
-//BLACK LETTERS
+    //BLACK LETTERS
     it("calculate 1 black letter", function() {
       options.quantity = 1;
       options.colour = false;
@@ -37,6 +37,7 @@ describe("Calculator", function() {
       options.extraSheet = false;
       options.duplexExtraColour = false;
       options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(prices.letter.basePrice);
     });
 
@@ -47,6 +48,7 @@ describe("Calculator", function() {
       options.extraSheet = false;
       options.duplexExtraColour = false;
       options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
         prices.letter.basePrice * options.quantity
       );
@@ -56,6 +58,9 @@ describe("Calculator", function() {
       options.colour = false;
       options.duplexExtra = true;
       options.extraSheet = false;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
         prices.letter.duplexExtra + prices.letter.basePrice
       );
@@ -65,6 +70,9 @@ describe("Calculator", function() {
       options.colour = false;
       options.duplexExtra = true;
       options.extraSheet = false;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
         options.quantity * (prices.letter.duplexExtra + prices.letter.basePrice)
       );
@@ -75,8 +83,12 @@ describe("Calculator", function() {
       options.colour = false;
       options.duplexExtra = false;
       options.extraSheet = 1;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
-        ((prices.letter.extraSheet * options.extraSheet) + prices.letter.basePrice*options.quantity) 
+        prices.letter.extraSheet * options.extraSheet +
+          prices.letter.basePrice * options.quantity
       );
     });
 
@@ -85,8 +97,12 @@ describe("Calculator", function() {
       options.colour = false;
       options.duplexExtra = false;
       options.extraSheet = 1;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
-        ((prices.letter.extraSheet * options.extraSheet) + prices.letter.basePrice*options.quantity) 
+        prices.letter.extraSheet * options.extraSheet +
+          prices.letter.basePrice * options.quantity
       );
     });
 
@@ -95,19 +111,53 @@ describe("Calculator", function() {
       options.colour = false;
       options.duplexExtra = false;
       options.extraSheet = 5;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
-        ((prices.letter.extraSheet * options.extraSheet) + prices.letter.basePrice*options.quantity) 
+        prices.letter.extraSheet * options.extraSheet +
+          prices.letter.basePrice * options.quantity
       );
     });
 
+    it("calculate 1 letter black with windowed envelope", function() {
+      options.quantity = 1;
+      options.colour = false;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = true;
+      expect(calculator.calculate(options)).toBe(
+        prices.letter.windowedEnvelopeExtra +
+          prices.letter.basePrice * options.quantity
+      );
+    });
+  
+    it("calculate 10 letters black with windowed envelope", function() {
+      options.quantity = 1;
+      options.colour = false;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = true;
+      expect(calculator.calculate(options)).toBe(
+        prices.letter.windowedEnvelopeExtra +
+          prices.letter.basePrice * options.quantity
+      );
+    });
 
-//COLOR LETTERS
+    //COLOR LETTERS
 
     it("calculate 1 colour letter", function() {
       options.quantity = 1;
       options.colour = true;
       options.duplexExtraColour = false;
       options.extraSheetColour = false;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(prices.letter.colourPrice);
     });
 
@@ -116,6 +166,9 @@ describe("Calculator", function() {
       options.colour = true;
       options.duplexExtraColour = false;
       options.extraSheetColour = false;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
         prices.letter.colourPrice * options.quantity
       );
@@ -125,6 +178,9 @@ describe("Calculator", function() {
       options.colour = true;
       options.duplexExtraColour = true;
       options.extraSheetColour = false;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
         prices.letter.duplexExtraColour + prices.letter.colourPrice
       );
@@ -134,41 +190,71 @@ describe("Calculator", function() {
       options.colour = true;
       options.duplexExtraColour = true;
       options.extraSheetColour = false;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
-        options.quantity * (prices.letter.duplexExtraColour + prices.letter.colourPrice)
+        options.quantity *
+          (prices.letter.duplexExtraColour + prices.letter.colourPrice)
       );
     });
-  
+
     it("calculate 1 letter colour with 1 extra sheets", function() {
       options.quantity = 1;
       options.colour = true;
       options.duplexExtraColour = false;
       options.extraSheetColour = 1;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
-        ((prices.letter.extraSheetColour * options.extraSheetColour) + prices.letter.colourPrice*options.quantity) 
+        prices.letter.extraSheetColour * options.extraSheetColour +
+          prices.letter.colourPrice * options.quantity
       );
     });
-  
+
     it("calculate 10 letter colour with 1 extra sheets", function() {
       options.quantity = 10;
       options.colour = true;
       options.duplexExtraColour = false;
       options.extraSheetColour = 1;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
-        ((prices.letter.extraSheetColour * options.extraSheetColour) + prices.letter.colourPrice*options.quantity) 
+        prices.letter.extraSheetColour * options.extraSheetColour +
+          prices.letter.colourPrice * options.quantity
       );
     });
-  
+
     it("calculate 1 letter colour with 5 extra sheets", function() {
       options.quantity = 1;
       options.colour = true;
       options.duplexExtraColour = false;
       options.extraSheetColour = 5;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.windowedEnvelopeExtra = false;
       expect(calculator.calculate(options)).toBe(
-        ((prices.letter.extraSheetColour * options.extraSheetColour) + prices.letter.colourPrice*options.quantity) 
+        prices.letter.extraSheetColour * options.extraSheetColour +
+          prices.letter.colourPrice * options.quantity
       );
     });
+    
 
+    it("calculate 1 letters color with windowed envelope", function() {
+      options.quantity = 1;
+      options.colour = true;
+      options.duplexExtra = false;
+      options.extraSheet = false;
+      options.duplexExtraColour = false;
+      options.extraSheetColour = false;
+      options.windowedEnvelopeExtra = true;
+      expect(calculator.calculate(options)).toBe(
+        prices.letter.windowedEnvelopeExtra +
+          prices.letter.colourPrice * options.quantity
+      );
+    }); 
   });
 
   describe(" A5 postcard pricing", function() {
