@@ -1,7 +1,7 @@
 const Calculator = require("../src/calculator");
 
 describe("Calculator", function() {
-  var prices = {
+  const prices = {
     letter: {
       basePrice: 44,
       colourPrice: 50,
