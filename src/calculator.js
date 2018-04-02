@@ -1,6 +1,6 @@
 function Calculator(prices) {
   this.prices = prices;
-
+  this.test = console.log('this is claculator logic');
   this.calculate = function (options) {
     const type = options.type;
     const prices = this.prices;
