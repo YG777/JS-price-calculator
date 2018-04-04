@@ -15,10 +15,18 @@
           <form class="form-horizontal" id="calculator">
             <div class="form-group">
               <div class="btn-group">
-                <button name="type" id="letter" class="btn btn-default btn-lg choice"><a href="#" >Letter</a></button>
-                <button name="type" id="a6postcard" class="btn btn-default btn-lg choice"><a href="#">Card A6</a></button>
-                <button name="type" id="a5postcard" class="btn btn-default btn-lg choice"><a href="#">Card A5</a></button>
-                <button name="type" id="greetingCard" class="btn btn-default btn-lg choice"><a href="#">Greeting Card</a></button>
+                <button name="type-choice" id="letter" class="btn btn-default btn-lg choice">
+                Letter
+                </button>
+                <button name="type-choice" id="a6postcard" class="btn btn-default btn-lg choice">
+                 Card A6
+                </button>
+                <button name="type-choice" id="a5postcard" class="btn btn-default btn-lg choice">
+                  <a href="#">Card A5</a>
+                </button>
+                <button name="type-choice" id="greetingCard" class="btn btn-default btn-lg choice">
+                Greeting Card<
+                </button>
               </div>
             </div>
 
@@ -34,8 +42,8 @@
             <div class="form-group row letter-field collapse in">
               <label for="">Extra Sheets</label>
               <div class="col-3">
-                 <input type="range" id="extraSheets" min="0" max="17" value="0">
-                  <output class="range-value">0</output>
+                <input type="range" id="extraSheets" min="0" max="17" value="0">
+                <output class="range-value">0</output>
                 <br/>
               </div>
             </div>
@@ -50,7 +58,7 @@
 
             <div class="form-check form-check-inline letter-field collapse">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="color" id="bw" value="false" checked> No
+                <input class="form-check-input" type="radio" name="colour" id="bw" value="false" checked> No
               </label>
             </div>
             <br/>
@@ -63,7 +71,7 @@
             </div>
             <div class="form-check form-check-inline letter-field collapse">
               <label class="form-check-label">
-                <input class="form-check-input" type="radio" name="duplex" id="inlineRadio2" id="single-sided" value="false" checked> No
+                <input class="form-check-input" type="radio" name="duplex" id="single-sided" value="false" checked> No
               </label>
             </div>
             <br/>
@@ -81,12 +89,6 @@
             </div>
             <!-------END OF RADIO BUTTONS-->
             <br/>
-
-
-
-
-
-
         </div>
         </form>
       </div>
