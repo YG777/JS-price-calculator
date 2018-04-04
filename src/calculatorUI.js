@@ -1,9 +1,16 @@
 function readValuesAndCreateObject() {
-  console.log(
-    'capture all the values into the correct object and log to console'
-  );
+  // console.log(
+  //   'capture all the values into the correct object and log to console'
+  // );
   var quantity = $('#quantity').val();
-  var type = $('button[name="type"]').attr('id');
+  // var orderType = $('.choice').attr('id');
+
+  // $(':button.choice').on('click', function() {
+  //   var btnClickedID = $('.choice').attr('id');
+  //   // console.log('capturedID ' + btnClickedID);
+  //   orderType = btnClickedID;
+  // });
+
   var extraSheets = $('#extraSheets').val();
 
   var isColour = $('input[name="colour"]:checked').val();
@@ -11,22 +18,22 @@ function readValuesAndCreateObject() {
   var isWindowedEnvelope = $('input[name="envelope"]:checked').val();
 
   const options = {
-    type,
     quantity,
+    // type: orderType,
     extraSheets,
     colour: isColour,
     duplex: isDuplex,
     windowedEnvelopeExtra: isWindowedEnvelope
   };
   console.log(options);
-  return options;
 }
 
 $(function() {
   //type
-  $('button[name="type"]').on('click', function() {
-    readValuesAndCreateObject();
-    calculatorFields();
+  $(':button.choice').on('click', function() {
+    const btnClicked = $(this).attr('id');
+    console.log('btn clicked: ' + btnClicked);
+  
   });
   //slider
   $('#quantity').on('change', function() {
@@ -48,12 +55,3 @@ $(function() {
   });
 });
 
-//if type not letter, hide letter options
-
-function calculatorFields() {
-  var getType = readValuesAndCreateObject();
-
-  if (getType === 'letter') {
-    $('.letter-field').collapse('show');
-  }
-}
