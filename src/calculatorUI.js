@@ -1,39 +1,31 @@
-function readValuesAndCreateObject() {
-  // console.log(
-  //   'capture all the values into the correct object and log to console'
-  // );
-  var quantity = $('#quantity').val();
-  // var orderType = $('.choice').attr('id');
+const readValuesAndCreateObject = (...values) => {
+ console.log(String(values));
+  
+  const quantity = $('#quantity').val();
+  const type = String(values);
+  const extraSheets = $('#extraSheets').val();
+  const isColour = $('input[name="colour"]:checked').val();
+  const isDuplex = $('input[name="duplex"]:checked').val();
+  const isWindowedEnvelope = $('input[name="envelope"]:checked').val();
 
-  // $(':button.choice').on('click', function() {
-  //   var btnClickedID = $('.choice').attr('id');
-  //   // console.log('capturedID ' + btnClickedID);
-  //   orderType = btnClickedID;
-  // });
-
-  var extraSheets = $('#extraSheets').val();
-
-  var isColour = $('input[name="colour"]:checked').val();
-  var isDuplex = $('input[name="duplex"]:checked').val();
-  var isWindowedEnvelope = $('input[name="envelope"]:checked').val();
 
   const options = {
     quantity,
-    // type: orderType,
+    type,
     extraSheets,
     colour: isColour,
     duplex: isDuplex,
     windowedEnvelopeExtra: isWindowedEnvelope
   };
   console.log(options);
-}
+};
 
 $(function() {
-  //type
+  
   $(':button.choice').on('click', function() {
     const btnClicked = $(this).attr('id');
     console.log('btn clicked: ' + btnClicked);
-  
+    readValuesAndCreateObject(btnClicked);
   });
   //slider
   $('#quantity').on('change', function() {
